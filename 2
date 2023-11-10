@@ -1,0 +1,28 @@
+# Натуральные числа. Выводит на экран нечётные числа, содержащие К различных цифр. Вывод нужно сделать прописью.
+import re
+digits = {'0': 'ноль', '1': 'один', '2': 'два', '3': 'три', '4': 'четыре', '5': 'пять', '6': 'шесть', '7': 'семь', '8': 'восемь', '9': 'девять'}    # словарь с прописными цифрами
+k = 5
+with open('data.txt') as input_file:
+    buffer = input_file.readline().split()
+    for i in range(0, len(buffer)):
+        s = buffer[i]
+        result = re.findall(r"\d+", s)
+        number4 = ''
+        cur_digit=''
+        count=0
+        b=0
+        c = ''.join(result)
+        d = ''.join(result)
+        if str(s)==d:
+            while int(c)!=0:                #выписывание цыфр
+                number3 = int(c) % 10
+                if str(number3) not in number4:
+                    number4+=str(number3)
+                    cur_digit+=f'{digits[str(number3)]}'+' '
+                    count+=1
+                if len(str(c))==1:
+                    if int(d)%2==1:
+                        b=1
+                c=int(c)//10
+            if count<=k and b==1:
+                print(d+'\n'+'Используются цыфры:'+cur_digit+'\n')
